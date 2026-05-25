@@ -35,4 +35,11 @@ public class CharacterService {
             return this.characterRepository.save(c);
         });
     }
+
+    public boolean delete(String id) {
+        return this.findById(id).map(characterExists -> {
+            this.characterRepository.deleteById(id);
+            return true;
+        }).orElse(false);
+    }
 }
